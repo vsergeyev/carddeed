@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+<script type="text/javascript" src="/appmedia/card_deed.js"></script>
+
+<style>
+	th {
+		background:#67a7e3;
+		color:white;
+		padding:4px;
+}
+	
+	.name_field {
+		width:300px;
+}
+	
+	.number {
+		width:200px;
+}
+</style>
+{% endblock %}
+    	
+{% block rightpanel %}
+	<div id="Toolbar">
+		<a href="javascript:document.getElementById('add_form').submit();">
+			<img src="/appmedia/save.gif" />
+			Сохранить
+		</a>
+		&nbsp;|&nbsp;
+		<a href="delete/">
+			<img src="/appmedia/delete.gif" />
+			Удалить
+		</a>
+		&nbsp;|&nbsp;
+		<a href="javascript:AddRowsToTable(1)">
+			<img src="/appmedia/add.gif">
+			Добавить строку
+		</a>
+		&nbsp;|&nbsp;
+		<a href="javascript:AddRowsToTable(5)">
+			<img src="/appmedia/add.gif">
+			5 строк
+		</a>
+		&nbsp;|&nbsp;
+		<a href="javascript:AddRowsToTable(10)">
+			<img src="/appmedia/add.gif">
+			10 строк
+		</a>
+		&nbsp;|&nbsp;
+		<a href="javascript:RemoveRowFromTable()">
+			<img src="/appmedia/delete2.gif">
+			Удалить строку
+		</a>
+		&nbsp;|&nbsp;
+		<a target="_blank" href="print/">
+			<img src="/appmedia/tabular.gif">
+			Сформировать акт для печати
+		</a>
+	</div>
+
+<form id="add_form" method="POST" action='' style="margin:0px;">
+	<table>
+		<!-- HEADING AND MENU -->
+		<tr>
+			<td>
+				<p style="margin:4px; font: bold 11pt arial">Акт №:
+				<input id="id_number" name="number" type="text" value="{{doc.number}}" style="width:80px;text-align:right"/> 
+			    от 
+			    <input id="id_doc_date" name="doc_date" type="text" value="{{doc.doc_date}}" class="vDateField" style="width:120px;text-align:center"/>
+			    
+			    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    
+			    Организация
+			    {{doc_form.enterprise}}
+			    
+			    </p>
+			</td>
+		</tr>
+		
+		<tr>
+			<td style="padding:4px; border-top: 1px solid #67a7e3; border-bottom: 1px solid #67a7e3">
+				<input id="translit_enabled" type="checkbox" checked="true" /><label for="translit_enabled">Транслитерация текста</label>
+				&nbsp;&nbsp;
+                <input id="checked_enabled" type="checkbox" /><label for="checked_enabled">Проставлять "Есть код"</label>
+			</td>
+		</tr>
+		
+		<!-- MAIN BODY -->
+		<tr>
+			<td>
+			<table id="card_records">
+				<tr>
+					<th>
+						№
+					</th>
+					<th>
+						ФИО
+					</th>
+					<th>
+						Номер зарпл. карты
+					</th>
+					<th>
+						Номер кред. карты
+					</th>
+					<th>
+						Есть код
+					</th>
+                    <th>
+						Примечание
+					</th>
+				</tr>
+				
+				{% for item in items %}
+				<tr>
+					<td>
+						{{forloop.counter}}
+					</td>
+					<td>
+						<input type="hidden" value="{{item.id}}" name="card_id{{forloop.counter}}" 
+						type="text" class="name_field" onchange="CardNameChanged(this.id, {{forloop.counter}})"/>
+						
+						<input value="{{item.name}}" id="card_name{{forloop.counter}}" name="card_name{{forloop.counter}}" 
+						type="text" class="name_field" onchange="CardNameChanged(this.id, {{forloop.counter}})"/>
+					</td>
+					<td>
+						<input value="{{item.number}}" id="card_number{{forloop.counter}}" name="card_number{{forloop.counter}}" 
+						type="text" class="number" />
+					</td>
+					<td>
+						<input value="{{item.credit_number}}" id="card_credit{{forloop.counter}}" name="card_credit{{forloop.counter}}" 
+						type="text" class="number" onchange="CreditCardChanged(this.id)"/>
+					</td>
+					<td>
+						<input id="have_pin{{forloop.counter}}" name="have_pin{{forloop.counter}}" 
+						type="checkbox" {% if item.have_pin %}CHECKED{% endif %} />
+					</td>
+                    <td>
+						<input value="{{item.note}}" id="card_note{{forloop.counter}}" name="card_note{{forloop.counter}}" 
+						type="text" class="number" />
+					</td>
+				</tr>
+				{% endfor %}
+			</table>
+			</td>
+		</tr>
+		
+		<!-- FOOTER -->
+		<tr>
+		
+		</tr>
+	</table>
+</form>
+
+<script language="JavaScript" type="text/javascript">
+	CardsCount = {{items.count}};
+	AddRowsToTable(5);
+</script>
+{% endblock %}

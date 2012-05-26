@@ -1,0 +1,12 @@
+Carddeed
+========
+
+Warning: application itself is on Russian :)
+
+An django+cherrypy application for bank clerks.
+
+* Organizations
+* Document for ATM cards operations
+
+It was originally written for my girl-friend,
+for here everyday use in Privatbank.

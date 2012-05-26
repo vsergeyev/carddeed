@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+<style>
+#Toolbar {color:white;}
+</style>
+{% endblock %}
+    	
+
+{% block rightpanel %}
+    {% if items %}
+	<div id="Toolbar">
+	    <a href="javascript:ToggleItems('stuff_list');">
+	    <img src="/appmedia/arrow.gif" />
+		Результаты поиска по актам ({{items.count}})
+		</a>
+	</div>
+	
+	<div id="stuff_list">
+		{% for item in items %}
+			<li>
+			<a href="{{item.doc.get_absolute_url}}">
+			<img src="/appmedia/edit.gif" />
+			{{item.number}} - {{item.name}} 
+			<span style="color:#cccccc;font-size:11px;">
+			(
+			{{item.doc}}
+			{% if item.credit_number %}, Номер кред. карты: {{item.credit_number}}{% endif %} 
+			{% if item.have_pin %}, Есть код{% endif %}
+            {% if item.note %}, {{item.note}}{% endif %}
+			)
+			</span>
+			</a>
+		{% endfor %}
+	</div>
+	
+    <p></p>
+    {% endif %}
+    
+    {% if atm_items %}
+	<div id="Toolbar" style="background:#67ac01;">
+	    <a href="javascript:ToggleItems('atm_stuff_list');">
+	    <img src="/appmedia/arrow.gif" />
+		Результаты поиска по банкоматным актам ({{atm_items.count}})
+		</a>
+	</div>
+	
+	<div id="atm_stuff_list">
+		{% for item in atm_items %}
+			<li>
+			<a href="{{item.doc.get_absolute_url}}">
+			<img src="/appmedia/edit.gif" />
+			{{item.number}} - {{item.name}} 
+			<span style="color:#cccccc;font-size:11px;">
+			(
+			{{item.doc}}
+			{% if item.credit_number %}, Номер кред. карты: {{item.credit_number}}{% endif %} 
+			{% if item.have_pin %}, Есть код{% endif %}
+            {% if item.note %}, {{item.note}}{% endif %}
+			)
+			</span>
+			</a>
+		{% endfor %}
+	</div>
+	{% endif %}
+{% endblock %}

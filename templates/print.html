@@ -1,0 +1,74 @@
+<html>
+<head>
+	<title>
+		Акт № {{doc.number}} від {{doc.doc_date}}. Організація {{doc.enterprise|default_if_none:"не зазначена"}}
+	</title>
+	
+	<META http-equiv="content-type" content="text/html; charset=utf-8">
+
+	<style>
+		.th {
+		border: 1px solid black; 
+		background:white;
+		}
+	</style>
+</head>
+
+<body>
+<p style="margin:8px; font: bold 12pt arial">
+Акт прийому передачі карток № {{doc.number}} від {{doc.doc_date}} 
+({{doc.enterprise|default_if_none:"організація не зазначена"}})
+</p>
+<br />
+
+<table cellspacing="0" cellpadding="2">
+<tr style="background:black"><th style="border: 1px solid black; background:white;"> № </th>
+	<th width="350" class="th"> П.І.Б.	</th>
+	<th width="250" class="th"> Номер зп. карти </th>
+	<th width="250" class="th"> Номер кр. карти </th>
+	<th width="100" class="th"> Зп. картку отримав </th>
+	<th width="100" class="th"> Кред. картку отримав</th>
+</tr>
+
+{% for item in items %}
+	<tr style="background:black">
+		<td class="th"> 
+			{{forloop.counter}}&nbsp; 
+		</td>
+		<td class="th"> 
+			{{item.name}}&nbsp;
+		</td>
+		<td class="th"> 
+			{{item.number}}&nbsp;
+		</td>
+		<td class="th"> 
+			{{item.credit_number}}&nbsp;
+		</td>
+		<td class="th">&nbsp;</td>
+		<td class="th">&nbsp;</td>
+	</tr>
+{% endfor %}
+	<tr style="background:black">
+		<td class="th">&nbsp;</td>
+		<td class="th">&nbsp;</td>
+		<td class="th">&nbsp;</td>
+		<td class="th">&nbsp;</td>
+		<td class="th">&nbsp;</td>
+		<td class="th">&nbsp;</td>
+	</tr>
+	<tr style="background:black">
+		<td class="th">&nbsp;</td>
+		<td class="th">&nbsp;</td>
+		<td class="th">&nbsp;</td>
+		<td class="th">&nbsp;</td>
+		<td class="th">&nbsp;</td>
+		<td class="th">&nbsp;</td>
+	</tr>
+</table>
+
+<p> 
+<p>Картки передав ___________________________
+<p>Картки прийняв ___________________________
+
+</body>
+</html>

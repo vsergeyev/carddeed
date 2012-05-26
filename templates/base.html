@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+
+<head>
+    <META HTTP-EQUIV="expires" CONTENT="0">
+    
+    <title>
+        {% block title %}
+            Акты
+        {% endblock %}
+    </title>
+    
+    <link rel="stylesheet" href="/appmedia/base.css" />
+    <link rel="stylesheet" href="/appmedia/stuff.css" />
+    <link rel="stylesheet" href="/appmedia/fonts.css" />
+    
+    <script type="text/javascript" src="/jsi18n/"></script>
+    <script type="text/javascript" src="/media/js/core.js"></script>
+    <script type="text/javascript" src="/media/js/admin/RelatedObjectLookups.js"></script>
+    <script type="text/javascript" src="/media/js/calendar.js"></script>
+    <script type="text/javascript" src="/media/js/admin/DateTimeShortcuts.js"></script>
+
+<script type="text/javascript">
+function ToggleItems(id) {
+	var div = document.getElementById(id);
+	if (div.style.display == 'none') {
+		div.style.display = 'block';
+	}
+	else {
+		div.style.display = 'none';
+	}
+}
+
+function SearchByName() {
+    var form = document.getElementById('search_form');
+    form.action = '/search_name/';
+    form.submit();
+}
+</script>
+    
+{% block extrahead %}
+
+{% endblock %}
+</head>
+
+<body>
+
+<div id="TopMenu">
+	<form id="search_form" method="POST" action='/search/' style="margin:0px;">
+		<a href="/">
+			<img src="/appmedia/docsslogo.gif" style="vertical-align:middle" />
+		</a>
+		<input type="text" name="search_number" id="id_search_number" style="width:300px" />
+		<input type="submit" value="Поиск по номеру карточки" />
+		<button onclick="SearchByName()">Поиск по ФИО или части имени</button>
+	</form>
+</div>
+
+<b style="margin: 0 2px;height:1px;background:#89c5ff;display:block;overflow: hidden"></b>
+<b style="margin: 0 1px;height:1px;background:#78b8ff;display:block;overflow: hidden"></b>
+<div id="Header">
+{% block header %}
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<a href="/edit_docs/add/">
+		<img src="/appmedia/add.gif">
+		Создать новый акт
+	</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<a href="/edit_docs/add_atm/">
+		<img src="/appmedia/add.gif">
+		Создать новый банкоматный акт
+	</a>
+{% endblock %}
+</div>
+
+<table cellspacing="0" width="100%">
+	<tr>
+		<td id="LeftPanel">
+		{% block leftpanel %}
+			<div style="overwlow:scroll">
+				
+				<a href="javascript:ToggleItems('items_stuff');" style="font-weight:bold">
+				<img src="/appmedia/arrow.gif" />
+	        	Справочники
+	        	</a>
+	        	<div id="items_stuff">
+	        		<li>
+		        	<a href="/stuff/Enterprise/list/">
+		        	<img src="/appmedia/edit.gif" />
+		        	Организации
+		        	</a>
+		        </div>
+		        <p>
+		        
+				<a href="javascript:ToggleItems('items_hotels');" style="font-weight:bold">
+				<img src="/appmedia/arrow.gif" />
+	        	Документы ({{docs|length}})
+	        	</a>
+	        	<div id="items_hotels">
+	        	{% for doc in docs %}
+		        	<li style="padding-top:0px">
+		        	<a href="{{doc.get_absolute_url}}">
+		        	<img src="/appmedia/edit.gif" style="vertical-align:middle" />
+		        	{{ doc }}
+		        	</a>
+		        	<br />
+		        	{% if doc.enterprise %}
+                    <span style="padding-left:18px;color:#aaaaaa;font-size:10px;">{{doc.enterprise}}</span>
+                    {% endif %}
+		        {% endfor%}
+		        </div>
+		        <p>
+        	</div>
+    	{% endblock %}
+		</td>
+		<td style="width:8px;background:#e1e7f2">
+		&nbsp;
+		</td>
+		<td id="RightPanel">
+		{% block rightpanel %}
+        
+    	{% endblock %}
+		</td>
+	</tr>
+</table>
+
+<div id="Footer">
+	Copyright &#169; <a href="http://pythondevside.com">diadya_vova</a> 2007-2008
+</div>
+<b style="margin: 0 0px;height:1px;background:#e1e1e1;display:block;overflow: hidden"></b>
+<b style="margin: 0 0px;height:1px;background:#aaaaaa;display:block;overflow: hidden"></b>
+
+</body>
+</html>

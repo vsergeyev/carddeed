@@ -1,0 +1,140 @@
+body {
+	background: white; /*#e1e7f2;*/
+}
+
+.odd_even th {
+	color:white;
+	background: #67a7e3;
+	padding:4px;
+	margin:0px;
+	line-height:20px;
+    border-top: 0px none;
+	border-bottom: 1px solid #dddddd;
+	font-weight: bold;
+}
+
+.odd_even td {
+	padding:2px;
+	line-height:20px;
+	border-bottom: 1px solid #eeeeee;
+} 
+
+#TopMenu {
+	background:white;
+	line-height:20px;
+	padding:4px;
+}
+
+#Header {
+	background: #67a7e3;
+	padding: 5px;
+	margin:0px;
+	line-height:20px;
+    border-top: 0px none;
+	border-bottom: 1px solid #dddddd;
+	font-weight: bold;
+}
+
+#Header a {color: white;}
+
+#LeftPanel {
+	background:white;
+	min-height:500px;
+	height:500px;
+	width: 180px;
+	margin:0px;
+	padding:10px;
+    vertical-align: top;
+    border-top: 1px solid #aaaaaa;
+    border-left: 1px solid #aaaaaa;
+    border-right: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+}
+
+#LeftPanel a {color: black}
+
+#LeftPanel li {
+	padding: 4px;
+	padding-left: 8px;
+	list-style-image:none;
+	list-style-position:outside;
+	list-style-type:none;
+}
+
+#stuff_list li {
+	display: block;
+	padding: 3px;
+	padding-left: 12px;
+	list-style-image:none;
+	list-style-position:outside;
+	list-style-type:none;
+	border-bottom: 1px solid #eeeeee;
+}
+
+#atm_stuff_list li {
+	display: block;
+	padding: 3px;
+	padding-left: 12px;
+	list-style-image:none;
+	list-style-position:outside;
+	list-style-type:none;
+	border-bottom: 1px solid #eeeeee;
+}
+
+#stuff_list a {color: black}
+
+#RightPanel {
+	background:white;
+	min-height:500px;
+	_height:500px;
+	/*width: 670px;*/
+    padding:5px;
+    
+    vertical-align: top;
+    border-top: 1px solid #aaaaaa;
+    border-left: 1px solid #aaaaaa;
+    border-right: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+}
+
+#Footer {
+	background: #e1e7f2;
+	line-height:14px;
+	padding:5px;
+    font-size:11px;
+    color: black;
+    }
+
+#Footer a {color:black}
+
+ul.errorlist { 
+    margin:0 
+    !important; 
+    padding:0 
+    !important; 
+    }
+
+.errorlist li { 
+    font-size:12px 
+    !important; 
+    display:block; 
+    padding:4px 5px 4px 25px; 
+    margin:0 0 3px 0; 
+    border:1px solid red; 
+    color:white; 
+    background:red url(/appmedia/icon_alert.gif) 5px .3em no-repeat; 
+    }
+
+img {border: 0px none;}
+
+#Toolbar {
+	background: #67a7e3;
+	padding:4px;
+	margin:0px;
+	line-height:20px;
+    border-top: 0px none;
+	border-bottom: 1px solid #dddddd;
+	font-weight: bold;
+}
+
+#Toolbar a {color: white;}

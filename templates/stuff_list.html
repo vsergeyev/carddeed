@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+<script language="JavaScript" type="text/javascript">
+function HideForm() {
+	var wnd = document.getElementById("add_item_wnd");
+	wnd.style.display = 'none';
+	wnd.style.visibility='hidden';
+}
+
+function HideEditForm() {
+	var wnd = document.getElementById("edit_item_wnd");
+	wnd.style.display = 'none';
+	wnd.style.visibility='hidden';
+}
+
+function ShowForm() {
+	HideEditForm();
+	var wnd = document.getElementById("add_item_wnd");
+	wnd.style.display = 'inline';
+	wnd.style.visibility='visible';
+	document.getElementById('id_name').focus();
+}
+
+function ShowEditForm(id, name) {
+	HideForm();
+	var wnd = document.getElementById("edit_item_wnd");
+	document.getElementById("id_id").value = id;
+	document.getElementById("id_name2").value = name;
+	
+	wnd.style.display = 'inline';
+	wnd.style.visibility='visible';
+	document.getElementById('id_name2').focus();
+}
+
+function DeleteSelected() {
+	document.getElementById('delete_items_form').submit();
+}
+</script>
+{% endblock %}
+    	
+
+{% block rightpanel %}
+	<div id="Toolbar">
+		<a href="javascript:ShowForm()">
+			<img src="/appmedia/add.gif">
+			Новый элемент
+		</a>
+		&nbsp;|&nbsp;
+		<a href="javascript:DeleteSelected()">
+			<img src="/appmedia/delete.gif">
+			Удалить выбранные элементы
+		</a>
+	</div>
+	
+<form id="add_item_wnd" method="POST" action='../add/' style="visibility:hidden;display:none;">
+	<input id="id_name" name="name" type="text" style="width:99%" />
+
+	<div style="background:#67a7e3;padding:2px;">
+		<input class="submit" type="submit" value="Сохранить">
+		::
+		<a href="javascript:HideForm()">
+		Отмена
+		</a>
+	</div>
+</form>
+
+<form id="edit_item_wnd" method="POST" action='../edit/' style="visibility:hidden;display:none;">
+	<input type="hidden" id="id_id" name="id" />
+	<input id="id_name2" name="name" type="text" style="width:99%" />
+
+	<div style="background:#67a7e3;padding:2px;">
+		<input class="submit" type="submit" value="Сохранить">
+		::
+		<a href="javascript:HideEditForm()">
+		Отмена
+		</a>
+	</div>
+</form>
+
+<form id="delete_items_form" method="POST" action='../delete/' style="margin:0px;">
+	<div id="stuff_list">
+		{% for item in items %}
+			<li>
+			<input type="checkbox" id="id_{{item.id}}" name="{{item.id}}" value="{{item.id}}" />
+			<a href="javascript:ShowEditForm({{item.id}}, '{{item.name}}')">
+			<img src="/appmedia/edit.gif" />
+			{{item}}
+			</a>
+		{% endfor %}
+	</div>
+</form>
+{% endblock %}

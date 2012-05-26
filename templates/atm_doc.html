@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+<script type="text/javascript" src="/appmedia/atm_doc.js"></script>
+
+<style>
+    #Toolbar {background:#67ac01;}
+    
+	th {
+		background:#67ac01;
+		color:white;
+		padding:4px;
+}
+	
+	.name_field {
+		width:300px;
+}
+	
+	.number {
+		width:200px;
+}
+
+    .DateField {
+		width:100px;
+}
+</style>
+{% endblock %}
+    	
+{% block rightpanel %}
+	<div id="Toolbar">
+		<a href="javascript:document.getElementById('add_form').submit();">
+			<img src="/appmedia/save.gif" />
+			Сохранить
+		</a>
+		&nbsp;|&nbsp;
+		<a href="javascript:AddRowsToTable(1)">
+			<img src="/appmedia/add.gif">
+			Добавить строку
+		</a>
+		&nbsp;|&nbsp;
+		<a href="javascript:AddRowsToTable(5)">
+			<img src="/appmedia/add.gif">
+			5 строк
+		</a>
+		&nbsp;|&nbsp;
+		<a href="javascript:AddRowsToTable(10)">
+			<img src="/appmedia/add.gif">
+			10 строк
+		</a>
+		&nbsp;|&nbsp;
+		<a href="javascript:RemoveRowFromTable()">
+			<img src="/appmedia/delete2.gif">
+			Удалить строку
+		</a>
+	</div>
+
+<form id="add_form" method="POST" action='../add_atm/' style="margin:0px;">
+	<table width=100%>
+		<!-- HEADING AND MENU -->
+		<tr>
+			<td>
+				<p style="margin:4px; font: bold 11pt arial">Банкоматный акт №:
+				<input id="id_number" name="number" type="text" style="width:80px;text-align:right"/> 
+			    от 
+			    <input id="id_doc_date" name="doc_date" type="text" class="vDateField" style="width:120px;text-align:center"/>
+			    
+			    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    
+			    Организация
+			    {{items.enterprise}}
+			    
+			    </p>
+			</td>
+		</tr>
+		
+		<tr>
+			<td style="padding:4px; border-top: 1px solid #67a7e3; border-bottom: 1px solid #67a7e3">
+				<input id="translit_enabled" type="checkbox" checked="true" /><label for="translit_enabled">Транслитерация текста</label>
+			</td>
+		</tr>
+		
+		<!-- MAIN BODY -->
+		<tr>
+			<td>
+			<table id="card_records">
+				<tr>
+					<th>
+						№
+					</th>
+					<th>
+						ФИО
+					</th>
+					<th>
+						Номер карты
+					</th>
+					<th>
+						Принята
+					</th>
+					<th>
+						Выдана
+					</th>
+                    <th>
+						Примечание
+					</th>
+				</tr>
+			</table>
+			</td>
+		</tr>
+		
+		<!-- FOOTER -->
+		<tr>
+		
+		</tr>
+	</table>
+</form>
+
+<script language="JavaScript" type="text/javascript">
+	AddRowsToTable(5);
+	AddRowsToTable(5);
+</script>
+{% endblock %}

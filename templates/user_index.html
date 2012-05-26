@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+<script type="text/javascript" src="/appmedia/card_deed.js"></script>
+
+<style>
+.nifty {
+	margin: 0 1px;
+	height:1px;
+	width:280px;
+	background:#78b8ff;
+	display:block;
+	overflow: hidden;
+}
+
+#welcome a {
+	display:block;
+	width:270px;
+	padding:5px;
+	border:1px solid #67a7e3;
+	font-weight:bold;
+	color:white;
+	background:#67a7e3;
+	font-size:11pt;
+}
+
+</style>
+{% endblock %}
+
+{% block rightpanel %}
+	<div id="welcome" style="padding-left:30px">
+		<h1>
+		Доброго дня!
+		</h1>
+		<h2>
+		Начало работы:
+		</h2>
+		
+		<b class="nifty"></b>
+		<a href="/edit_docs/add/" class="button">
+			<img src="/appmedia/add.gif">
+			Создать новый акт
+		</a>
+		<b class="nifty"></b>
+		
+		<br />
+		
+		<b class="nifty"></b>
+		<a href="/edit_docs/add_atm/" class="button">
+			<img src="/appmedia/add.gif">
+			Создать новый банкоматный акт
+		</a>
+		<b class="nifty"></b>
+		
+		<br />
+		
+		<b class="nifty"></b>
+		<a href="/stuff/Enterprise/list/" class="button">
+			<img src="/appmedia/edit.gif" style="vertical-align:middle">
+			Отрыть список организаций
+		</a>
+		<b class="nifty"></b>
+	</div>
+	
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+{% endblock %}
